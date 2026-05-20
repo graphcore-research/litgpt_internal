@@ -69,6 +69,8 @@ optional-dependencies.extra = [
   "transformers>=4.51.3,<4.57",
   # litdata, only on non-Windows:
   "uvloop>=0.2; sys_platform!='win32'",
+  # litgpt logging:
+  "wandb>=0.12.10",
   # litgpt.data.prepare_slimpajama.py:
   "zstandard>=0.22",
 ]
