@@ -1,0 +1,3 @@
+[submodule "k8s-scripts"]
+	path = k8s-scripts
+	url = git@github.com:graphcore-research/k8s-scripts.git
