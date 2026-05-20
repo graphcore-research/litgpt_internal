@@ -13,13 +13,12 @@ export PYTHON_SCRIPT="pretrain pythia-14m"
 export GPUS_PER_NODE="${GPUS_PER_NODE:-4}"
 export RUN_COMMAND="litgpt"
 
-export JOB_PREFIX="${NANOCHAT_BASE_DIR:-litgpt-test}"
+export JOB_PREFIX="${NANOCHAT_BASE_DIR:-litgpt_test}"
 
-# export SETUP_COMMAND="\
-# mkdir -p ${NANOCHAT_BASE_DIR}; \
-# aws s3 sync s3://graphcore-research-us-east-1/albertoc/nanochat/.cache/nanochat/ ${NANOCHAT_BASE_DIR}; \
-# pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cu128; \
-# pip install -r pip_requirements.txt"
+export SETUP_COMMAND="\
+pip install -e '.[all]'; \
+litgpt download EleutherAI/pythia-14m --tokenizer_only true; \
+"
 
-bash k8s-scripts/submit-volt.sh -- \
+bash k8s-scripts/submit-volt.sh \
   --config config_hub/pretrain/debug.yaml
